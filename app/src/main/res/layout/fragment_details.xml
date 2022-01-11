@@ -12,8 +12,9 @@
         android:layout_height="wrap_content"
         app:title="Details"
         app:titleTextColor="@color/white"
-        app:navigationIcon="?attr/homeAsUpIndicator"
-        android:background="@color/black" />
+        app:navigationIcon="@drawable/ic_baseline_keyboard_backspace_24"
+        android:background="@color/black"
+        />
 
     <ImageView
         android:id="@+id/avatar"
