@@ -12,15 +12,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.hw_3.R
 import com.example.hw_3.adapter.PersonAdapter
 import com.example.hw_3.databinding.FragmentListBinding
 import com.example.hw_3.model.PersonViewModel
 import com.example.hw_3.paging.PagingData
 import com.example.hw_3.provider.ServiceProvider
-import kotlinx.coroutines.channels.awaitClose
-import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
