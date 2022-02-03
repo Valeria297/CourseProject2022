@@ -19,7 +19,6 @@ import com.example.hw_3.lce.Lce
 import com.example.hw_3.model.DetailsViewModel
 import com.example.hw_3.provider.ServiceProvider
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.item_loading.*
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
@@ -72,6 +71,7 @@ class FragmentDetails : Fragment() {
                            val personDetails = lce.value
                            avatar.load(personDetails.avatarUrl)
                            login.text = personDetails.login
+
                            followers.text = "Followers: ${personDetails.followers}"
                            following.text = "Following: ${personDetails.following}"
                            repository.text = "Repository: ${personDetails.repository}"

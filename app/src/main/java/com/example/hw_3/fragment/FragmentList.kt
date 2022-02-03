@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
@@ -14,15 +13,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import coil.load
 import com.example.hw_3.R
 import com.example.hw_3.adapter.PersonAdapter
 import com.example.hw_3.databinding.FragmentListBinding
-import com.example.hw_3.lce.Lce
 import com.example.hw_3.model.PersonViewModel
 import com.example.hw_3.paging.PagingData
 import com.example.hw_3.provider.ServiceProvider
-import kotlinx.android.synthetic.main.item_loading.*
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.launchIn

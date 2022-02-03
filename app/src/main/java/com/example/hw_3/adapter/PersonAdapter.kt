@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.hw_3.databinding.ItemLoadingBinding
 import com.example.hw_3.databinding.ItemUserBinding
 import com.example.hw_3.paging.PagingData
 import com.example.hw_3.model.PersonGitHub
