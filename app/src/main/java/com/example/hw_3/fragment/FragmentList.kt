@@ -67,11 +67,6 @@ class FragmentList : Fragment() {
             recyclerView.adapter = adapter
             recyclerView.layoutManager = linearLayoutManager
 
-            layoutSwipeRefresh
-                .onRefreshListener()
-                .onEach { viewModel.onRefresh() }
-                .launchIn(viewLifecycleOwner.lifecycleScope)
-
             viewModel
                 .personFlow
                 .onEach { persons ->

@@ -22,11 +22,6 @@ class PersonViewModel(private val gitApi: GitAPI) : ViewModel() {
         loadData()
     }
 
-    fun onRefresh() {
-        currentPage = 0
-        loadData()
-    }
-
     private fun loadData() {
         if (isLoading) return
 
