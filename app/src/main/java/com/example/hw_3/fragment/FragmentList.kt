@@ -80,16 +80,6 @@ class FragmentList : Fragment() {
         }
     }
 
-    private fun SwipeRefreshLayout.onRefreshListener() = callbackFlow {
-        setOnRefreshListener {
-            trySend(Unit)
-        }
-
-        awaitClose {
-            setOnRefreshListener(null)
-        }
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
