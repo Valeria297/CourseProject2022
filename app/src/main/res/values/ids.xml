@@ -12,4 +12,11 @@
     <item
         name="following"
         type="id"/>
+    <item
+        name="repository"
+        type="id"/>
+    <item
+        name="experience"
+        type="id"/>
+
 </resources>

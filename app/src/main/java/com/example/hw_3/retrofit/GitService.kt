@@ -7,25 +7,12 @@ import retrofit2.create
 
 class GitService {
 
-    private val retrofit by lazy(LazyThreadSafetyMode.NONE) { provideRetrofit() }
+    fun provideApi() = retrofit.create<GitAPI>()
 
-    val gitApi by lazy(LazyThreadSafetyMode.NONE) {
-        retrofit.create<GitAPI>()
-    }
-
-    @JvmName("getGitApi1")
-    fun getGitApi() : GitAPI {
-        return gitApi
-    }
-
-    private fun provideRetrofit(): Retrofit {
-        val client = OkHttpClient.Builder()
-            .build()
-
-        return Retrofit.Builder()
+    private val retrofit by lazy(LazyThreadSafetyMode.NONE) {
+        Retrofit.Builder()
             .baseUrl("https://api.github.com/")
             .addConverterFactory(GsonConverterFactory.create())
-            .client(client)
             .build()
     }
 

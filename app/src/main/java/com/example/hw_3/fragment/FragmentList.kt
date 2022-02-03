@@ -4,28 +4,42 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.SearchView
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.hw_3.paging.PagingData
-import com.example.hw_3.person.PersonGitHub
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import coil.load
 import com.example.hw_3.R
-import com.example.hw_3.retrofit.GitService
 import com.example.hw_3.adapter.PersonAdapter
 import com.example.hw_3.databinding.FragmentListBinding
-import com.google.android.material.snackbar.Snackbar
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.example.hw_3.lce.Lce
+import com.example.hw_3.model.PersonViewModel
+import com.example.hw_3.paging.PagingData
+import com.example.hw_3.provider.ServiceProvider
+import kotlinx.android.synthetic.main.item_loading.*
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 class FragmentList : Fragment() {
     private var _binding: FragmentListBinding? = null
+    private val binding get() = requireNotNull(_binding)
 
-    private val binding get() = requireNotNull(_binding) {
-        "View does not exist anymore"
+    private val viewModel: PersonViewModel by viewModels {
+
+        object : ViewModelProvider.Factory {
+            override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                @Suppress("UNCHECKED_CAST")
+                return PersonViewModel(ServiceProvider.provideGitApi()) as T
+            }
+        }
     }
 
     private val adapter = PersonAdapter { person ->
@@ -34,13 +48,10 @@ class FragmentList : Fragment() {
         )
     }
 
-    private var isLoading = false
-    private var currentPage = 0
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         return FragmentListBinding.inflate(inflater, container, false)
             .also { binding ->
@@ -51,77 +62,42 @@ class FragmentList : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        loadPersons()
 
         with(binding) {
-
             val linearLayoutManager = LinearLayoutManager(
                 view.context, LinearLayoutManager.VERTICAL, false
             )
 
             recyclerView.adapter = adapter
             recyclerView.layoutManager = linearLayoutManager
-            recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                    super.onScrolled(recyclerView, dx, dy)
 
-                    val totalItemCount = linearLayoutManager.itemCount
-                    val lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition()
+            layoutSwipeRefresh
+                .onRefreshListener()
+                .onEach { viewModel.onRefresh() }
+                .launchIn(viewLifecycleOwner.lifecycleScope)
 
-                    if (!isLoading && dy != 0 && totalItemCount
-                        <= (lastVisibleItem + COUNT_TO_LOAD)) {
-                        recyclerView.post {
-                            loadPersons()
-                        }
-                    }
+            viewModel
+                .personFlow
+                .onEach { persons ->
+                    val tempList = adapter.currentList
+                        .dropLastWhile { it == PagingData.Loading }
+                        .plus(persons.map { PagingData.Content(it) })
+                        .plus(PagingData.Loading)
+                    adapter.submitList(tempList)
                 }
-            })
+                .launchIn(viewLifecycleOwner.lifecycleScope)
         }
     }
 
-    private fun loadPersons(onLoadingFinished: () -> Unit = {}) {
-        if (isLoading) return
-        isLoading = true
-
-        val loadingFinishedCallback = {
-            isLoading = false
-            onLoadingFinished()
+    private fun SwipeRefreshLayout.onRefreshListener() = callbackFlow {
+        setOnRefreshListener {
+            trySend(Unit)
         }
 
-        val since = currentPage * PAGE_SIZE
-        val gitService = GitService()
-        gitService.getGitApi().getUsers(since, PAGE_SIZE)
-            .enqueue(object : Callback<List<PersonGitHub>> {
-                override fun onResponse(
-                    call: Call<List<PersonGitHub>>,
-                    response: Response<List<PersonGitHub>>
-                ) {
-                    if (response.isSuccessful) {
-                        val newList = adapter.currentList
-                            .dropLastWhile { it == PagingData.Loading }
-                            .plus(response.body()?.map { PagingData.Content(it) }.orEmpty())
-                            .plus(PagingData.Loading)
-                        adapter.submitList(newList)
-                        currentPage++
-                    } else {
-                        showErrors(response.errorBody()?.string() ?: "Something went wrong..")
-                    }
-
-                    loadingFinishedCallback()
-                }
-
-                override fun onFailure(call: Call<List<PersonGitHub>>, t: Throwable) {
-                    showErrors(t.message ?: "Something went wrong..")
-                    loadingFinishedCallback()
-                }
-            })
+        awaitClose {
+            setOnRefreshListener(null)
+        }
     }
-
-    private fun showErrors(errorMessage: String) {
-        Snackbar.make(binding.root, errorMessage, Snackbar.LENGTH_SHORT)
-            .show()
-    }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -129,8 +105,10 @@ class FragmentList : Fragment() {
     }
 
     companion object {
-        private const val PAGE_SIZE = 30
-        private const val COUNT_TO_LOAD = 10
-
+        private const val PAGE_SIZE = 100
     }
+
 }
+
+
+

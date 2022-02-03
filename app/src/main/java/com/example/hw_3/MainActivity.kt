@@ -12,22 +12,9 @@ import com.example.hw_3.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var appBarConfiguration: AppBarConfiguration
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        val host: NavHostFragment = supportFragmentManager
-            .findFragmentById(R.id.list) as NavHostFragment? ?: return
-
-        val navController = host.navController
-
-        appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.fragment_details))
-
-        setupActionBarWithNavController(navController, appBarConfiguration)
-
     }
 
 }
