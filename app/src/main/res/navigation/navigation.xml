@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/navigation"
@@ -7,27 +8,49 @@
 
     <fragment
         android:id="@+id/list"
-        android:name="com.example.hw_3.fragment.FragmentList"
+        android:name="com.example.hw_3.presentation.fragments.FragmentList"
         tools:layout="@layout/fragment_list">
 
         <action
             android:id="@+id/to_details"
             app:destination="@id/details" />
+        <action
+            android:id="@+id/action_list_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/details"
-        android:name="com.example.hw_3.fragment.FragmentDetails"
+        android:name="com.example.hw_3.presentation.fragments.FragmentDetails"
         tools:layout="@layout/fragment_details">
 
         <argument
             android:name="name"
             app:argType="string" />
-        <action
-            android:id="@+id/action_details_to_list"
-            app:destination="@id/list"
-            app:popUpTo="@id/list"
-            app:popUpToInclusive="true" />
     </fragment>
 
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.hw_3.presentation.fragments.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settingsFragment_to_languageFragment"
+            app:destination="@id/languageFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_nightModeFragment"
+            app:destination="@id/nightModeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nightModeFragment"
+        android:name="com.example.hw_3.presentation.fragments.NightModeFragment"
+        android:label="fragment_night_mode"
+        tools:layout="@layout/fragment_night_mode" />
+
+    <fragment
+        android:id="@+id/languageFragment"
+        android:name="com.example.hw_3.presentation.fragments.LanguageFragment"
+        android:label="fragment_language"
+        tools:layout="@layout/fragment_language" />
 </navigation>

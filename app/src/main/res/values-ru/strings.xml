@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">HW_3</string>
+    <string name="search">Поиск</string>
+    <!-- Preference Titles -->
+    <string name="messages_header">Сообщения</string>
+    <string name="sync_header">Синхронизация</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="login">Логин</string>
+    <string name="details">Детали</string>
+    <string name="followers">Подписчики:</string>
+    <string name="following">Подписки:</string>
+    <string name="repository">Репозитории:</string>
+    <string name="experience">Опыт работы:</string>
+    <string name="list">Список пользователей</string>
+    <string name="settings">Настройки</string>
+    <string name="theme">Тема</string>
+    <string name="language">Язык</string>
+    <string name="home">Главная</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="choose_a_theme">Выберите тему:</string>
+    <string name="dark_theme">Светлая тема</string>
+    <string name="light_theme">Темная тема</string>
+    <string name="save_energy_theme">Энергосберегающая тема</string>
+    <string name="system_theme">Системная тема</string>
+    <string name="theme1">Тема</string>
+    <string name="english">Английский</string>
+    <string name="lang">Язык</string>
+    <string name="choose_a_language">Выберите язык:</string>
+    <string name="russian">Русский</string>
+</resources>
