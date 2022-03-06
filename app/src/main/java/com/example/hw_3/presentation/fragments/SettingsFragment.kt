@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.hw_3.R
@@ -39,6 +42,13 @@ class SettingsFragment : Fragment() {
             language.setOnClickListener {
                 findNavController().navigate(R.id.action_settingsFragment_to_languageFragment)
             }
+        }
+
+        ViewCompat.setOnApplyWindowInsetsListener(toolbar) { _, insets ->
+            app_bar.updatePadding(
+                top = insets.getInsets(WindowInsetsCompat.Type.systemBars()).top
+            )
+            insets
         }
 
         toolbar.setupWithNavController(findNavController())
