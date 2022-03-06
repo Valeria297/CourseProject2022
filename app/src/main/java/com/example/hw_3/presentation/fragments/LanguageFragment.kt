@@ -7,9 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.data.model.Language
+import com.example.data.sharedprefs.SharedPreferences
 import com.example.hw_3.databinding.FragmentLanguageBinding
-import com.example.hw_3.domain.model.Language
-import com.example.hw_3.domain.sharedprefs.SharedPreferences
 import org.koin.android.ext.android.inject
 
 class LanguageFragment : Fragment() {
@@ -17,7 +17,7 @@ class LanguageFragment : Fragment() {
     private var _binding: FragmentLanguageBinding? = null
     private val binding get() = requireNotNull(_binding)
 
-    private val sharedPrefs:SharedPreferences by inject()
+    private val sharedPrefs: SharedPreferences by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater,

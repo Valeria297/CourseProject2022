@@ -3,15 +3,12 @@ package com.example.hw_3
 import android.app.Application
 import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate
-import com.example.hw_3.data.locale.LanguageAppContext
-import com.example.hw_3.presentation.koin.networkModule
-import com.example.hw_3.presentation.koin.repositoryModule
-import com.example.hw_3.presentation.koin.useCaseModule
-import com.example.hw_3.presentation.koin.viewModelModule
+import com.example.data.locale.LanguageAppContext
+import com.example.hw_3.presentation.koin.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.GlobalContext.startKoin
 
-class App : Application(){
+class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
@@ -20,10 +17,10 @@ class App : Application(){
         startKoin {
             androidContext(this@App)
             modules(
-                networkModule,
+                viewModelModule,
                 repositoryModule,
                 useCaseModule,
-                viewModelModule
+                retrofitModule
             )
         }
     }

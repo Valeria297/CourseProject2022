@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.size.Scale
 import coil.size.ViewSizeResolver
-import com.example.hw_3.data.model.PersonGitHub
+import com.example.data.model.PersonGitHub
 import com.example.hw_3.databinding.ItemUserBinding
 
 class PersonViewHolder(

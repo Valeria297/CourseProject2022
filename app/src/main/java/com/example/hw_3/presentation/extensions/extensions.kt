@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.example.hw_3.domain.model.Language
+import com.example.data.model.Language
 import com.example.hw_3.presentation.model.Paging3ScrollModel
 import com.example.hw_3.presentation.paging3.PagingDataLce
 import kotlinx.coroutines.channels.awaitClose

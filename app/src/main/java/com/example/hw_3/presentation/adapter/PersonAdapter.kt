@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hw_3.databinding.ItemUserBinding
 import com.example.hw_3.presentation.model.Paging
-import com.example.hw_3.data.model.PersonGitHub
+import com.example.data.model.PersonGitHub
 import com.example.hw_3.databinding.ItemLoadingBinding
 import androidx.recyclerview.widget.ListAdapter as ListAdapter1
 

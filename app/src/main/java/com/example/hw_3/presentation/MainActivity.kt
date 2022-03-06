@@ -9,21 +9,20 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.hw_3.App
+import com.example.data.sharedprefs.SharedPreferences
 import com.example.hw_3.R
 import com.example.hw_3.applySelectedAppLanguage
 import com.example.hw_3.databinding.ActivityMainBinding
-import com.example.hw_3.domain.sharedprefs.SharedPreferences
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.fragment_list.*
+import org.koin.android.ext.android.inject
+
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private val sharedprefs by lazy {
-        SharedPreferences(App.getInstance())
-    }
+    private val sharedprefs:SharedPreferences by inject()
 
     override fun attachBaseContext(newBase: Context) {
         super.attachBaseContext(newBase.applySelectedAppLanguage(sharedprefs.language))

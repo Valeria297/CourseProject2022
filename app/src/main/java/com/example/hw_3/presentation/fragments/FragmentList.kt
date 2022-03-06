@@ -10,8 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.data.mapper.toGitModel
 import com.example.hw_3.R
-import com.example.hw_3.data.mapper.toGitModel
 import com.example.hw_3.presentation.adapter.PersonAdapter
 import com.example.hw_3.databinding.FragmentListBinding
 import com.example.hw_3.presentation.model.Paging
