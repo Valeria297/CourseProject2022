@@ -17,16 +17,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.fragment_list.*
 import org.koin.android.ext.android.inject
 
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
     private val sharedprefs:SharedPreferences by inject()
-
-    override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(newBase.applySelectedAppLanguage(sharedprefs.language))
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,4 +48,7 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
     }
 
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(newBase.applySelectedAppLanguage(sharedprefs.language))
+    }
 }

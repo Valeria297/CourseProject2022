@@ -2,23 +2,29 @@ package com.example.data.sharedprefs
 
 import android.content.Context
 import com.example.data.model.Language
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 class SharedPreferences(context: Context) {
 
     private val sharedPrefs = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)
 
-    var language: Language by enumPref(KEY_LANGUAGE, Language.EN)
+    var language: Language by Delegate(
+        sharedPrefs,
+        getValue = {
+            getString(KEY_LANGUAGE, null)
+                ?.let { enumValueOf<Language>(it) }
+                ?: Language.EN
+        },
+        setValue = {
+            putString(KEY_LANGUAGE, it.name)
+            _languageFlow.tryEmit(it)
+        }
+    )
 
-    private inline fun <reified E : Enum<E>> enumPref(key: String, defaultValue: E) =
-        Delegate(
-            sharedPrefs,
-            getValue = {
-                getString(key, null)?.let(::enumValueOf) ?: defaultValue
-            },
-            setValue = {
-                putString(key, it.name)
-            }
-        )
+    private val _languageFlow = MutableStateFlow(language)
+    val languageFlow: Flow<Language> = _languageFlow.asStateFlow()
 
     companion object {
         private const val SP_NAME = "sp"
