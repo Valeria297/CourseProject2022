@@ -24,3 +24,23 @@ fun PersonDetailsGit.toLocalModel(): PersonDetails {
         experience = experience
     )
 }
+
+fun Person.toGitModel(): PersonGitHub {
+    return PersonGitHub(
+        id = id,
+        login = login,
+        avatarUrl = avatarUrl
+    )
+}
+
+fun PersonDetails.toGitModel(): PersonDetailsGit {
+    return PersonDetailsGit(
+        id = id,
+        login = login,
+        avatarUrl = avatarUrl,
+        followers = followers,
+        following = following,
+        repository = repository,
+        experience = experience
+    )
+}

@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hw_3.R
+import com.example.hw_3.data.mapper.toGitModel
 import com.example.hw_3.presentation.adapter.PersonAdapter
 import com.example.hw_3.databinding.FragmentListBinding
 import com.example.hw_3.presentation.model.Paging
@@ -76,7 +77,7 @@ class FragmentList : Fragment() {
                     when (state) {
                         is PagingDataLce.Content -> {
                             adapter.submitList(
-                                state.dataList.map { Paging.Content(it) }
+                                state.dataList.map { Paging.Content(it.toGitModel()) }
                                     .let {
                                         if (state.hasData)
                                             it.plus(Paging.Loading)
@@ -86,7 +87,7 @@ class FragmentList : Fragment() {
                         }
                         is PagingDataLce.ContentWithError -> {
                             adapter.submitList(
-                                state.dataList.map { Paging.Content(it) }
+                                state.dataList.map { Paging.Content(it.toGitModel()) }
                                     .plus(Paging.Error)
                             )
                         }

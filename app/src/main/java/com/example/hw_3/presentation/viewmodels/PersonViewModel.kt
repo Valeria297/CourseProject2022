@@ -15,7 +15,7 @@ class PersonViewModel(private val getPersonsList: GetPersonsList) : ViewModel() 
         getPersonsList(it.countToLoad, it.countMax)
     }
 
-    val personPagingData: Flow<PagingDataLce<PersonGitHub>> = pagingDataSource.subscribePagingData()
+    val personPagingData: Flow<PagingDataLce<Person>> = pagingDataSource.subscribePagingData()
 
     fun onLoadMore() {
         pagingDataSource.loadMore()
