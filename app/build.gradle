@@ -3,7 +3,6 @@ plugins {
     id 'kotlin-android'
     id 'androidx.navigation.safeargs'
     id 'kotlin-android-extensions'
-    id "com.google.secrets_gradle_plugin" version "0.6.1"
 }
 
 android {
@@ -58,8 +57,6 @@ dependencies {
     implementation 'androidx.preference:preference:1.1.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
-
-    implementation 'com.google.android.gms:play-services-maps:18.0.2'
 
     def nav_version = "2.3.5"
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
