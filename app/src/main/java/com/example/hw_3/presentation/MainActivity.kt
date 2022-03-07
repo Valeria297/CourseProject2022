@@ -21,9 +21,10 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private val sharedprefs:SharedPreferences by inject()
+    private val sharedprefs: SharedPreferences by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.splashScreenTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -31,7 +32,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val navView: BottomNavigationView = navigation
-
         val navController = findNavController(R.id.list)
 
         val appBarConfiguration = AppBarConfiguration(
