@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
     app:startDestination="@id/list">
 
@@ -17,6 +16,9 @@
         <action
             android:id="@+id/action_list_to_settingsFragment"
             app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_list_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
     </fragment>
 
     <fragment
@@ -33,7 +35,7 @@
         android:id="@+id/settingsFragment"
         android:name="com.example.hw_3.presentation.fragments.SettingsFragment"
         android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" >
+        tools:layout="@layout/fragment_settings">
         <action
             android:id="@+id/action_settingsFragment_to_languageFragment"
             app:destination="@id/languageFragment" />
@@ -53,4 +55,10 @@
         android:name="com.example.hw_3.presentation.fragments.LanguageFragment"
         android:label="fragment_language"
         tools:layout="@layout/fragment_language" />
+
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.example.hw_3.presentation.fragments.MapsFragment"
+        android:label="MapsFragment"
+        tools:layout="@layout/fragment_maps" />
 </navigation>

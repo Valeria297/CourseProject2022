@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
 
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.list, R.id.settings
+                R.id.list, R.id.settings, R.id.fragment_maps
             )
         )
 
