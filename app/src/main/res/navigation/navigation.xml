@@ -3,62 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/list">
+    app:startDestination="@id/basic">
 
     <fragment
-        android:id="@+id/list"
-        android:name="com.example.hw_3.presentation.fragments.FragmentList"
-        tools:layout="@layout/fragment_list">
-
-        <action
-            android:id="@+id/to_details"
-            app:destination="@id/details" />
-        <action
-            android:id="@+id/action_list_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
-        <action
-            android:id="@+id/action_list_to_mapsFragment"
-            app:destination="@id/mapsFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/details"
-        android:name="com.example.hw_3.presentation.fragments.FragmentDetails"
-        tools:layout="@layout/fragment_details">
-
-        <argument
-            android:name="name"
-            app:argType="string" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.example.hw_3.presentation.fragments.SettingsFragment"
-        android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings">
-        <action
-            android:id="@+id/action_settingsFragment_to_languageFragment"
-            app:destination="@id/languageFragment" />
-        <action
-            android:id="@+id/action_settingsFragment_to_nightModeFragment"
-            app:destination="@id/nightModeFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/nightModeFragment"
-        android:name="com.example.hw_3.presentation.fragments.NightModeFragment"
-        android:label="fragment_night_mode"
-        tools:layout="@layout/fragment_night_mode" />
-
-    <fragment
-        android:id="@+id/languageFragment"
-        android:name="com.example.hw_3.presentation.fragments.LanguageFragment"
-        android:label="fragment_language"
-        tools:layout="@layout/fragment_language" />
-
-    <fragment
-        android:id="@+id/mapsFragment"
-        android:name="com.example.hw_3.presentation.fragments.MapsFragment"
-        android:label="MapsFragment"
-        tools:layout="@layout/fragment_maps" />
+        android:id="@+id/basic"
+        android:name="com.example.hw_3.presentation.fragments.BasicFragment"
+        tools:layout="@layout/fragment_basic"/>
 </navigation>

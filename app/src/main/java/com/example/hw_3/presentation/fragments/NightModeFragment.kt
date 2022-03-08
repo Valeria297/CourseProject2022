@@ -9,12 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.updatePadding
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.hw_3.R
+import com.example.hw_3.addToolbarInset
 import kotlinx.android.synthetic.main.fragment_night_mode.*
 
 class NightModeFragment : Fragment() {
@@ -37,13 +35,7 @@ class NightModeFragment : Fragment() {
         initThemeListener()
         initTheme()
 
-        ViewCompat.setOnApplyWindowInsetsListener(toolbar) { _, insets ->
-            app_bar.updatePadding(
-                top = insets.getInsets(WindowInsetsCompat.Type.systemBars()).top
-            )
-            insets
-        }
-
+        app_bar.addToolbarInset()
         toolbar.setupWithNavController(findNavController())
     }
 

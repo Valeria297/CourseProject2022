@@ -2,7 +2,6 @@ package com.example.hw_3
 
 import android.app.Application
 import android.content.Context
-import androidx.appcompat.app.AppCompatDelegate
 import com.example.data.locale.LanguageAppContext
 import com.example.data.sharedprefs.SharedPreferences
 import com.example.hw_3.presentation.koin.*
@@ -16,11 +15,14 @@ import org.koin.core.context.GlobalContext.startKoin
 
 class App : Application() {
 
-    private val prefsManager: SharedPreferences by inject()
+    private val sharedPreferences: SharedPreferences by inject()
+
+    override fun attachBaseContext(base: Context) {
+        super.attachBaseContext(LanguageAppContext(base, application = this))
+    }
 
     override fun onCreate() {
         super.onCreate()
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.getDefaultNightMode())
 
         startKoin {
             androidContext(this@App)
@@ -28,19 +30,17 @@ class App : Application() {
                 viewModelModule,
                 repositoryModule,
                 useCaseModule,
-                retrofitModule
+                retrofitModule,
+                sharedPrefsModule
             )
         }
 
-        prefsManager
+        sharedPreferences
             .languageFlow
             .onEach {
                 (baseContext as LanguageAppContext).appLanguage = it
             }
-            .launchIn(CoroutineScope(Dispatchers.Main))
+            .launchIn(CoroutineScope(Dispatchers.IO))
     }
 
-    override fun attachBaseContext(base: Context) {
-        super.attachBaseContext(LanguageAppContext(base, application = this))
-    }
 }

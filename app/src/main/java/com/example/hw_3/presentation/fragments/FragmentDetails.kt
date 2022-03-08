@@ -4,15 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
-import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import coil.load
+import com.example.hw_3.addToolbarInset
 import com.example.hw_3.databinding.FragmentDetailsBinding
 import com.example.hw_3.presentation.model.Lce
 import com.example.hw_3.presentation.viewmodels.DetailsViewModel
@@ -76,13 +74,7 @@ class FragmentDetails : Fragment() {
             }
             .launchIn(viewLifecycleOwner.lifecycleScope)
 
-        ViewCompat.setOnApplyWindowInsetsListener(toolbar) { _, insets ->
-            app_bar.updatePadding(
-                top = insets.getInsets(WindowInsetsCompat.Type.systemBars()).top
-            )
-            insets
-        }
-
+        app_bar.addToolbarInset()
         binding.toolbar.setupWithNavController(findNavController())
     }
 

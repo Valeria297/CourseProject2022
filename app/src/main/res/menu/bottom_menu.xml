@@ -3,9 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_baseline_home_24"
-        android:title="@string/home"/>
+        android:id="@+id/navigation_list"
+        android:icon="@drawable/ic_baseline_list_alt_24"
+        android:title="@string/users_list"/>
 
     <item
         android:id="@+id/navigation_settings"
@@ -13,7 +13,7 @@
         android:title="@string/settings"/>
 
     <item
-        android:id="@+id/map"
+        android:id="@+id/navigation_map"
         android:icon="@drawable/ic_baseline_map_24"
         android:title="@string/google_maps"/>
 

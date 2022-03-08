@@ -5,24 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
-import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.data.mapper.toGitModel
-import com.example.hw_3.R
+import com.example.hw_3.*
 import com.example.hw_3.presentation.adapter.PersonAdapter
 import com.example.hw_3.databinding.FragmentListBinding
 import com.example.hw_3.presentation.model.Paging
 import com.example.hw_3.presentation.viewmodels.PersonViewModel
-import com.example.hw_3.onPaginationScrolling
-import com.example.hw_3.onRefresh
 import com.example.hw_3.presentation.paging3.PagingDataLce
-import com.example.hw_3.toast
 import kotlinx.android.synthetic.main.fragment_night_mode.*
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -102,12 +96,7 @@ class FragmentList : Fragment() {
                 }
                 .launchIn(viewLifecycleOwner.lifecycleScope)
 
-            ViewCompat.setOnApplyWindowInsetsListener(toolbar) { _, insets ->
-                app_bar.updatePadding(
-                    top = insets.getInsets(WindowInsetsCompat.Type.systemBars()).top
-                )
-                insets
-            }
+            app_bar.addToolbarInset()
         }
     }
 

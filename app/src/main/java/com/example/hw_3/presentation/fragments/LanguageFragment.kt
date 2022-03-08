@@ -5,13 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.updatePadding
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.data.model.Language
 import com.example.data.sharedprefs.SharedPreferences
+import com.example.hw_3.addToolbarInset
 import com.example.hw_3.databinding.FragmentLanguageBinding
 import kotlinx.android.synthetic.main.fragment_night_mode.*
 import org.koin.android.ext.android.inject
@@ -56,13 +54,7 @@ class LanguageFragment : Fragment() {
                 activity?.recreate()
             }
 
-            ViewCompat.setOnApplyWindowInsetsListener(toolbar) { _, insets ->
-                app_bar.updatePadding(
-                    top = insets.getInsets(WindowInsetsCompat.Type.systemBars()).top
-                )
-                insets
-            }
-
+            app_bar.addToolbarInset()
             toolbar.setupWithNavController(findNavController())
         }
     }

@@ -3,12 +3,17 @@ package com.example.hw_3
 import android.content.Context
 import android.content.res.Configuration
 import android.widget.Toast
+import androidx.core.graphics.Insets
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.data.model.Language
 import com.example.hw_3.presentation.model.Paging3ScrollModel
 import com.example.hw_3.presentation.paging3.PagingDataLce
+import com.google.android.material.appbar.AppBarLayout
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.callbackFlow
 import java.util.*
@@ -34,7 +39,7 @@ fun PagingDataLce<*>.isErrorState(): Boolean {
 
 fun RecyclerView.onPaginationScrolling(
     layoutManager: LinearLayoutManager,
-    itemsToLoad: Int
+    itemsToLoad: Int,
 ) = callbackFlow {
     val scrollListener = Paging3ScrollModel(layoutManager, itemsToLoad) { trySend(Unit) }
 
@@ -48,4 +53,15 @@ fun SwipeRefreshLayout.onRefresh() = callbackFlow {
     awaitClose { setOnRefreshListener(null) }
 }
 
+//Insets extension
+fun AppBarLayout.addToolbarInset() {
+    ViewCompat.setOnApplyWindowInsetsListener(this) { _, insets ->
+        updatePadding(
+            top = insets.getInsets(WindowInsetsCompat.Type.statusBars()).top
+        )
+        WindowInsetsCompat.Builder(insets)
+            .setInsets(WindowInsetsCompat.Type.statusBars(), Insets.NONE)
+            .build()
+    }
+}
 

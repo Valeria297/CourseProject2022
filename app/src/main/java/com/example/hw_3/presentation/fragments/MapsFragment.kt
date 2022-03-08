@@ -11,10 +11,12 @@ import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
+import com.example.hw_3.addToolbarInset
 import com.example.hw_3.databinding.FragmentMapsBinding
 import com.example.hw_3.presentation.map.MapService
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.LocationSource
+import kotlinx.android.synthetic.main.fragment_night_mode.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -57,6 +59,7 @@ class MapsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        app_bar.addToolbarInset()
 
         launcherOfPermission.launch(ACCESS_FINE_LOCATION)
 

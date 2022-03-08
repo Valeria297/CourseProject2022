@@ -11,10 +11,10 @@
         android:allowBackup="true"
         android:configChanges="orientation|screenSize"
         android:icon="@mipmap/ic_launcher_git"
-        android:label="@string/app_name"
+        android:label="@string/git_users"
         android:roundIcon="@mipmap/ic_launcher_git_round"
         android:supportsRtl="true"
-        android:theme="@style/splashScreenTheme">
+        android:theme="@style/Theme.HW_3">
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
