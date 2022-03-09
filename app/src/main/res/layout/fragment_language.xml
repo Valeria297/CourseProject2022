@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
         style="@style/Widget.MaterialComponents.AppBarLayout.Primary"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -18,29 +17,25 @@
             android:layout_height="wrap_content"
             android:background="@color/black"
             app:title="@string/lang"
-            app:titleTextColor="@color/white"
-            tools:ignore="MissingConstraints" />
+            app:titleTextColor="@color/white" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingStart="20dp"
-        android:paddingTop="275dp"
+        android:paddingTop="240dp"
         android:text="@string/choose_a_language"
-        android:textSize="25sp"
-        tools:ignore="MissingConstraints" />
+        android:textSize="25sp" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingStart="20dp"
-        android:paddingEnd="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:paddingTop="10dp"
+        android:paddingEnd="20dp">
 
         <RadioButton
             android:id="@+id/english"
@@ -56,4 +51,4 @@
             android:layout_height="wrap_content"
             android:text="@string/russian" />
     </RadioGroup>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
