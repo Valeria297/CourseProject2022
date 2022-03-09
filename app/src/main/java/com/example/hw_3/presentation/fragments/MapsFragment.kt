@@ -59,7 +59,6 @@ class MapsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        app_bar.addToolbarInset()
 
         launcherOfPermission.launch(ACCESS_FINE_LOCATION)
 

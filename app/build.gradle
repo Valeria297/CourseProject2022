@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'androidx.navigation.safeargs'
     id 'kotlin-android-extensions'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 android {
@@ -81,6 +82,8 @@ dependencies {
     def retrofit_version = "2.9.0"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
+    implementation 'com.google.android.gms:play-services-location:19.0.1'
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
