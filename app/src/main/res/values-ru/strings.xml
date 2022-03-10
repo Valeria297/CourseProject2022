@@ -38,6 +38,7 @@
     <string name="english">Английский</string>
     <string name="lang">Язык</string>
     <string name="choose_a_language">Выберите язык:</string>
+    <string name="google_maps">Карта</string>
     <string name="users_list">Пользователи</string>
     <string name="russian">Русский</string>
 </resources>

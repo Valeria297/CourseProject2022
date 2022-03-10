@@ -62,18 +62,18 @@ class MapsFragment : Fragment() {
 
         binding.mapView.getMapAsync { map ->
 
-            googleMap?.isMyLocationEnabled =
+            map.isMyLocationEnabled =
                 ContextCompat.checkSelfPermission(
                     view.context,
                     ACCESS_FINE_LOCATION
                 ) == PackageManager.PERMISSION_GRANTED
 
-            googleMap?.apply {
+            map.apply {
                 uiSettings.isZoomControlsEnabled = true
                 uiSettings.isMyLocationButtonEnabled = true
             }
 
-            googleMap?.setLocationSource(object : LocationSource {
+            map.setLocationSource(object : LocationSource {
                 override fun activate(l: LocationSource.OnLocationChangedListener) {
                     locationListener = l
                 }

@@ -38,7 +38,7 @@
     <string name="lang">Language</string>
     <string name="choose_a_language">Choose a language:</string>
     <string name="russian">Русский</string>
-    <string name="google_maps" translatable="false">Google maps</string>
+    <string name="google_maps">Google maps</string>
     <string name="users_list">Users list</string>
     <string name="git_users" translatable="false">Git-Users</string>
 </resources>
