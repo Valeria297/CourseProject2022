@@ -4,16 +4,16 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hw_3.databinding.ItemUserBinding
 import com.example.hw_3.presentation.model.Paging
 import com.example.data.model.PersonGitHub
 import com.example.hw_3.databinding.ItemLoadingBinding
-import androidx.recyclerview.widget.ListAdapter as ListAdapter1
 
 class PersonAdapter(
     private val onUserClicked: (PersonGitHub) -> Unit,
-) : ListAdapter1<Paging<PersonGitHub>, RecyclerView.ViewHolder>(DIFF_CALLBACK) {
+) : ListAdapter<Paging<PersonGitHub>, RecyclerView.ViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -30,7 +30,7 @@ class PersonAdapter(
                     binding = ItemLoadingBinding.inflate(layoutInflater, parent, false)
                 )
             }
-            else ->  error("Unknown viewType")
+            else ->  error("Unknown view-type")
         }
     }
 
@@ -44,7 +44,7 @@ class PersonAdapter(
         return when (getItem(position)) {
             is Paging.Content -> TYPE_PERSON
             Paging.Loading -> TYPE_LOADING
-            else -> error("something went wrong")
+            else -> error("Unknown view-type")
         }
     }
 

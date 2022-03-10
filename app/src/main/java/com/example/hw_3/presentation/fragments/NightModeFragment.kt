@@ -13,9 +13,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.hw_3.R
 import com.example.hw_3.addToolbarInset
-import kotlinx.android.synthetic.main.fragment_night_mode.*
+import com.example.hw_3.databinding.FragmentNightModeBinding
 
 class NightModeFragment : Fragment() {
+
+    private var _binding: FragmentNightModeBinding? = null
+    private val binding get() = requireNotNull(_binding)
 
     private val sharedPrefs by lazy {
         requireContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
@@ -35,12 +38,12 @@ class NightModeFragment : Fragment() {
         initThemeListener()
         initTheme()
 
-        app_bar.addToolbarInset()
-        toolbar.setupWithNavController(findNavController())
+        binding.appBar.addToolbarInset()
+        binding.toolbar.setupWithNavController(findNavController())
     }
 
     private fun initThemeListener() {
-        radioGroup.setOnCheckedChangeListener { _, checkedId ->
+        binding.radioGroup.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
                 R.id.themeLight -> setTheme(AppCompatDelegate.MODE_NIGHT_NO, THEME_LIGHT)
                 R.id.themeDark -> setTheme(AppCompatDelegate.MODE_NIGHT_YES, THEME_DARK)
@@ -54,21 +57,21 @@ class NightModeFragment : Fragment() {
 
     private fun initTheme() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            themeSystem.visibility = View.VISIBLE
+            binding.themeSystem.visibility = View.VISIBLE
         } else {
-            themeSystem.visibility = View.GONE
+            binding.themeSystem.visibility = View.GONE
         }
 
         when (getSavedTheme()) {
-            THEME_LIGHT -> themeLight.isChecked = true
-            THEME_DARK -> themeDark.isChecked = true
-            THEME_SYSTEM -> themeSystem.isChecked = true
-            THEME_BATTERY -> themeBattery.isChecked = true
+            THEME_LIGHT -> binding.themeLight.isChecked = true
+            THEME_DARK -> binding.themeDark.isChecked = true
+            THEME_SYSTEM -> binding.themeSystem.isChecked = true
+            THEME_BATTERY -> binding.themeBattery.isChecked = true
             THEME_UNDEFINED -> {
                 when (resources.configuration.uiMode.and(Configuration.UI_MODE_NIGHT_MASK)) {
-                    Configuration.UI_MODE_NIGHT_NO -> themeLight.isChecked = true
-                    Configuration.UI_MODE_NIGHT_YES -> themeDark.isChecked = true
-                    Configuration.UI_MODE_NIGHT_UNDEFINED -> themeLight.isChecked = true
+                    Configuration.UI_MODE_NIGHT_NO -> binding.themeLight.isChecked = true
+                    Configuration.UI_MODE_NIGHT_YES -> binding.themeDark.isChecked = true
+                    Configuration.UI_MODE_NIGHT_UNDEFINED -> binding.themeLight.isChecked = true
                 }
             }
         }

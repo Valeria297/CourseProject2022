@@ -17,7 +17,6 @@ import com.example.hw_3.databinding.FragmentListBinding
 import com.example.hw_3.presentation.model.Paging
 import com.example.hw_3.presentation.viewmodels.PersonViewModel
 import com.example.hw_3.presentation.paging3.PagingDataLce
-import kotlinx.android.synthetic.main.fragment_night_mode.*
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -90,13 +89,13 @@ class FragmentList : Fragment() {
                             )
                         }
                         is PagingDataLce.StateLoadingError -> {
-                            requireContext().toast("Something went wrong..")
+                            requireContext().toast("Loading error")
                         }
                     }
                 }
                 .launchIn(viewLifecycleOwner.lifecycleScope)
 
-            app_bar.addToolbarInset()
+            binding.appBar.addToolbarInset()
         }
     }
 

@@ -10,7 +10,6 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.hw_3.R
 import com.example.hw_3.addToolbarInset
 import com.example.hw_3.databinding.FragmentSettingsBinding
-import kotlinx.android.synthetic.main.fragment_night_mode.*
 
 class SettingsFragment : Fragment() {
 
@@ -42,8 +41,7 @@ class SettingsFragment : Fragment() {
             }
         }
 
-        app_bar.addToolbarInset()
-        toolbar.setupWithNavController(findNavController())
+        binding.appBar.addToolbarInset()
     }
 
     override fun onDestroyView() {

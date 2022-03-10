@@ -11,7 +11,7 @@ import com.example.data.model.Language
 import com.example.data.sharedprefs.SharedPreferences
 import com.example.hw_3.addToolbarInset
 import com.example.hw_3.databinding.FragmentLanguageBinding
-import kotlinx.android.synthetic.main.fragment_night_mode.*
+
 import org.koin.android.ext.android.inject
 
 class LanguageFragment : Fragment() {
@@ -36,7 +36,7 @@ class LanguageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        with (binding) {
+        with(binding) {
 
             when (sharedPrefs.language) {
                 Language.EN -> english
@@ -51,10 +51,10 @@ class LanguageFragment : Fragment() {
                 }
                 sharedPrefs.language = language
 
-                activity?.recreate()
+                requireActivity().recreate()
             }
 
-            app_bar.addToolbarInset()
+            binding.appBar.addToolbarInset()
             toolbar.setupWithNavController(findNavController())
         }
     }

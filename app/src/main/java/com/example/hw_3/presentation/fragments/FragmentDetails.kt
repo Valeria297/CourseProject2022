@@ -15,7 +15,6 @@ import com.example.hw_3.databinding.FragmentDetailsBinding
 import com.example.hw_3.presentation.model.Lce
 import com.example.hw_3.presentation.viewmodels.DetailsViewModel
 import com.example.hw_3.toast
-import kotlinx.android.synthetic.main.fragment_night_mode.*
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -74,7 +73,7 @@ class FragmentDetails : Fragment() {
             }
             .launchIn(viewLifecycleOwner.lifecycleScope)
 
-        app_bar.addToolbarInset()
+        binding.appBar.addToolbarInset()
         binding.toolbar.setupWithNavController(findNavController())
     }
 
