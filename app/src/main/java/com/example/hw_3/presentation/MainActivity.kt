@@ -18,10 +18,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        /*WindowCompat.setDecorFitsSystemWindows(window, false)
-        window.statusBarColor = Color.TRANSPARENT
-        window.navigationBarColor = Color.TRANSPARENT*/
-
         AppCompatDelegate.setDefaultNightMode(
             when (sharedprefs.nightMode) {
                 NightMode.DARK -> AppCompatDelegate.MODE_NIGHT_YES
