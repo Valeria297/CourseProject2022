@@ -27,5 +27,9 @@
         <argument
             android:name="name"
             app:argType="string" />
+        <action
+            android:id="@+id/action_details_to_list"
+            app:destination="@id/list"
+            app:popUpTo="@id/list" />
     </fragment>
 </navigation>

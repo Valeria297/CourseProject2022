@@ -1,15 +1,13 @@
 package com.example.hw_3.presentation
 
 import android.content.Context
-import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.view.WindowCompat
+import com.example.data.model.NightMode
 import com.example.data.sharedprefs.SharedPreferences
 import com.example.hw_3.R
 import com.example.hw_3.applySelectedAppLanguage
-import com.example.hw_3.databinding.ActivityMainBinding
 import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {
@@ -20,11 +18,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-       /* WindowCompat.setDecorFitsSystemWindows(window, false)
+        /*WindowCompat.setDecorFitsSystemWindows(window, false)
         window.statusBarColor = Color.TRANSPARENT
         window.navigationBarColor = Color.TRANSPARENT*/
 
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        AppCompatDelegate.setDefaultNightMode(
+            when (sharedprefs.nightMode) {
+                NightMode.DARK -> AppCompatDelegate.MODE_NIGHT_YES
+                NightMode.LIGHT -> AppCompatDelegate.MODE_NIGHT_NO
+                NightMode.SYSTEM -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+                NightMode.ENERGY_SAVING -> AppCompatDelegate.MODE_NIGHT_YES
+            }
+        )
     }
 
     override fun attachBaseContext(newBase: Context) {
