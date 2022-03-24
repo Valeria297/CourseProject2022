@@ -13,6 +13,7 @@ import com.example.data.sharedprefs.SharedPreferences
 import com.example.hw_3.R
 import com.example.hw_3.addToolbarInset
 import com.example.hw_3.databinding.FragmentNightModeBinding
+import com.example.hw_3.databinding.FragmentSettingsBinding
 import org.koin.android.ext.android.inject
 
 class NightModeFragment : Fragment() {
@@ -26,8 +27,12 @@ class NightModeFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
-        return inflater.inflate(R.layout.fragment_night_mode, container, false)
+    ): View {
+        return FragmentNightModeBinding.inflate(inflater, container, false)
+            .also { binding ->
+                _binding = binding
+            }
+            .root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

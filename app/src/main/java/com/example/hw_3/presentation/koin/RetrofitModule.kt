@@ -16,3 +16,4 @@ val retrofitModule = module {
 
     single { get<Retrofit>().create<GitAPI>() }
 }
+
