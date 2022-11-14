@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_list"
+    app:startDestination="@id/list">
+
+    <fragment
+        android:id="@+id/list"
+        android:name="com.example.hw_3.presentation.fragments.FragmentList"
+        tools:layout="@layout/fragment_list">
+
+        <action
+            android:id="@+id/to_details"
+            app:destination="@id/details"
+            app:enterAnim="@anim/slide_to_right"
+            app:exitAnim="@anim/slide_from_left"
+            app:popEnterAnim="@anim/slide_to_left"
+            app:popExitAnim="@anim/slide_from_right"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/details"
+        android:name="com.example.hw_3.presentation.fragments.FragmentDetails"
+        tools:layout="@layout/fragment_details">
+
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_details_to_list"
+            app:destination="@id/list"
+            app:popUpTo="@id/list" />
+    </fragment>
+</navigation>

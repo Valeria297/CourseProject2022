@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/basic">
+
+    <fragment
+        android:id="@+id/basic"
+        android:name="com.example.hw_3.presentation.fragments.BasicFragment"
+        tools:layout="@layout/fragment_basic"/>
+</navigation>
